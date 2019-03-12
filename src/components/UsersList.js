@@ -9,10 +9,24 @@ class UsersList extends Component {
         super(props);
         this.state= {
             users: [],
-            isFormOpen: true,
-            currentUserClicked: 1
+            isFormOpen: false,
+            currentUserClicked: null
         }
     }
+
+    openUserForm = (userId) => {
+        this.setState({
+            currentUserClicked: userId,
+            isFormOpen: true
+        })
+    };
+
+    closeUserForm = () => {
+        this.setState({
+            currentUserClicked: null,
+            isFormOpen: false
+        })
+    };
 
     componentDidMount() {
         this.fetchUsers();
@@ -28,7 +42,7 @@ class UsersList extends Component {
         <ul className={'users-list-container'}>
             {
                 users.map((user) => (
-                    <UserListItem key={user.id} user={user}/>
+                    <UserListItem key={user.id} user={user} openUserForm={this.openUserForm}/>
                 ))
             }
         </ul>
@@ -39,7 +53,10 @@ class UsersList extends Component {
         return (
             <div>
                 {isFormOpen ?
-                    <UserForm userId={currentUserClicked}/> :
+                    <UserForm
+                        userId={currentUserClicked}
+                        onCancel={this.closeUserForm}
+                    /> :
                     users.length && this.renderUsersList(users)
                 }
             </div>
