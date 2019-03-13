@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import mockApi from '../utils/mockApi';
 import {isObjectEmpty} from '../utils/utils';
 import Button from './common/Button';
+import { withStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress'
+import TextField from '@material-ui/core/TextField'
+import InputLabel from '@material-ui/core/InputLabel'
+import Divider from '@material-ui/core/Divider'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import FormControl from '@material-ui/core/FormControl'
 
 class UserForm extends Component {
 
@@ -18,20 +26,106 @@ class UserForm extends Component {
         })
     }
 
+    handleChange = field => e => {
+
+        let {user} = this.state;
+        switch (field) {
+            case 'name':
+                this.setState({user: {...user, name: e.target.value}});
+                break;
+            case 'age':
+                this.setState({user: {...user, age: e.target.value}});
+                break;
+            case 'email':
+                this.setState({user: {...user, email: e.target.value}});
+                break;
+            default:
+                console.log('Wait what?')
+        }
+    };
+
 
     render() {
+        let {classes} = this.props;
         let {user} = this.state;
+
+        let ageMenuItems = [];
+        for (let i=0; i<99; i++) {
+            ageMenuItems.push(<MenuItem key={i} value={i}>{i}</MenuItem>)
+        }
+
         return (
-            <>
-                {
-                    user && !isObjectEmpty(user) &&
-                    <div>User form for user {user.name}
-                        <Button onClick={this.props.onCancel} text={'Go back'} classname={'cancel'}/>
+            <div>
+                {!user || isObjectEmpty(user) ?
+                    <CircularProgress className={classes.progress}/> :
+                    <div className={classes.container}>
+                        <TextField
+                            id="outlined-name"
+                            label="Name"
+                            className={classes.textField}
+                            value={user.name || ''}
+                            onChange={this.handleChange('name')}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <Divider/>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="age-simple">Age</InputLabel>
+                            <Select
+                                value={user.age || 0}
+                                onChange={this.handleChange('age')}
+                                inputProps={{name: 'age', id: 'age-simple'}}>
+                                <MenuItem value={user.age}>
+                                    <em>Current: {user.age}</em>
+                                </MenuItem>
+                                {ageMenuItems}
+                            </Select>
+                        </FormControl>
+                        <Divider/>
+                        <TextField
+                            id="outlined-name"
+                            label="Email"
+                            className={classes.textField}
+                            value={user.email || ''}
+                            onChange={this.handleChange('email')}
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <Divider/>
+                        <div>
+                            <Button onClick={this.props.onCancel} text={'Go back'} classname={'cancel'}/>}
+                        </div>
                     </div>
+
                 }
-            </>
+            </div>
         );
     };
 }
 
-export default UserForm;
+const styles = theme => ({
+    container: {
+        width: 380,
+        height: 420,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'space-between',
+        backgroundColor: theme.palette.background.paper,
+        borderRadius: 5
+    },
+    textField: {
+        marginBottom: 30,
+        width: 300
+    },
+    formControl: {
+        marginBottom: 30,
+        width: 300
+    },
+    progress: {
+        margin: theme.spacing.unit * 2
+    }
+});
+
+export default withStyles(styles)(UserForm);
