@@ -26,6 +26,17 @@ class UserForm extends Component {
         })
     }
 
+    onSubmit = (type) => {
+        //made a switch case, since we plan on adding 'delete' here as well, later
+        switch (type) {
+            case 'save':
+                this.props.onSubmit(this.state.user);
+                break;
+            default:
+                console.log(`nope, you probably didn't wanna reach this`)
+        }
+    };
+
     handleChange = field => e => {
 
         let {user} = this.state;
@@ -94,6 +105,7 @@ class UserForm extends Component {
                         <Divider/>
                         <div>
                             <Button onClick={this.props.onCancel} text={'Go back'} classname={'cancel'}/>}
+                            <Button text={'Save'} onClick={() => {this.onSubmit('save')}} />
                         </div>
                     </div>
 

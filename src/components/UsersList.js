@@ -28,6 +28,11 @@ class UsersList extends Component {
         })
     };
 
+    onUserFormSubmit = (user) => {
+        mockApi.updateUser(user).then(this.fetchUsers);
+        this.closeUserForm();
+    };
+
     componentDidMount() {
         this.fetchUsers();
     }
@@ -55,6 +60,7 @@ class UsersList extends Component {
                 {isFormOpen ?
                     <UserForm
                         userId={currentUserClicked}
+                        onSubmit={this.onUserFormSubmit}
                         onCancel={this.closeUserForm}
                     /> :
                     users.length && this.renderUsersList(users)
