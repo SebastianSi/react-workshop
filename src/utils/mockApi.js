@@ -17,7 +17,7 @@ const resolveAfter1Second = (action) => {
     switch (action.type) {
         case "fetchUsers":
             return new Promise(resolve => {
-                console.log('FETCHING USERS: ', USERS);
+                // console.log('FETCHING USERS: ', USERS);
                 setTimeout(() => {resolve(USERS)}, ONE_SECOND)
             });
         case "fetchUserById":
