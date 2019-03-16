@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserListItem from './UserListItem';
 import UserForm from './UserForm';
 import mockApi from '../utils/mockApi';
+import Button from './common/Button';
 
 class UsersList extends Component {
 
@@ -10,14 +11,16 @@ class UsersList extends Component {
         this.state= {
             users: [],
             isFormOpen: false,
+            isAddMode: false,
             currentUserClicked: null
         }
     }
 
-    openUserForm = (userId) => {
+    openUserForm = (userId, isAddMode) => {
         this.setState({
             currentUserClicked: userId,
-            isFormOpen: true
+            isFormOpen: true,
+            isAddMode
         })
     };
 
@@ -29,7 +32,11 @@ class UsersList extends Component {
     };
 
     onUserFormSubmit = (user) => {
-        mockApi.updateUser(user).then(this.fetchUsers);
+        if (this.state.isAddMode) {
+            mockApi.addUser(user).then(this.fetchUsers)
+        } else {
+            mockApi.updateUser(user).then(this.fetchUsers)
+        }
         this.closeUserForm();
     };
 
@@ -54,20 +61,35 @@ class UsersList extends Component {
     );
 
     render() {
-        let { users, isFormOpen, currentUserClicked } = this.state;
+        let { users, isAddMode, isFormOpen, currentUserClicked } = this.state;
         return (
-            <div>
+            <div style={styles}>
                 {isFormOpen ?
                     <UserForm
+                        isAddMode={isAddMode}
                         userId={currentUserClicked}
                         onSubmit={this.onUserFormSubmit}
                         onCancel={this.closeUserForm}
                     /> :
-                    users.length && this.renderUsersList(users)
+                    <>
+                        {!!users.length && this.renderUsersList(users)}
+                        <div>
+                            <Button text={'Add user'} onClick={()=> {this.openUserForm(null, true)}}/>
+                        </div>
+                    </>
                 }
             </div>
         );
     }
 }
+
+const styles = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: 450,
+    height: 700,
+    borderRadius: 5
+};
 
 export default UsersList;

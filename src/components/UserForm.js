@@ -21,13 +21,14 @@ class UserForm extends Component {
     }
 
     componentDidMount() {
-        mockApi.fetchUserById(this.props.userId).then((user)=>{
-            this.setState({user})
-        })
+        if (!this.props.isAddMode) {
+            mockApi.fetchUserById(this.props.userId).then((user) => {
+                this.setState({user})
+            })
+        }
     }
 
     onSubmit = (type) => {
-        //made a switch case, since we plan on adding 'delete' here as well, later
         switch (type) {
             case 'save':
                 this.props.onSubmit(this.state.user);
@@ -57,7 +58,7 @@ class UserForm extends Component {
 
 
     render() {
-        let {classes} = this.props;
+        let {classes, isAddMode} = this.props;
         let {user} = this.state;
 
         let ageMenuItems = [];
@@ -67,7 +68,7 @@ class UserForm extends Component {
 
         return (
             <div>
-                {!user || isObjectEmpty(user) ?
+                {!isAddMode && (!user || isObjectEmpty(user)) ?
                     <CircularProgress className={classes.progress}/> :
                     <div className={classes.container}>
                         <TextField
