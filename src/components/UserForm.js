@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import mockApi from '../utils/mockApi';
 import {isObjectEmpty} from '../utils/utils';
+import PropTypes from 'prop-types';
 import Button from './common/Button';
 import { withStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -12,6 +13,14 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 
 class UserForm extends Component {
+
+    static generateAgeDropdownItems() {
+        let ageMenuItems = [];
+        for (let i=0; i<99; i++) {
+            ageMenuItems.push(<MenuItem key={i} value={i}>{i}</MenuItem>)
+        }
+        return ageMenuItems;
+    }
 
     constructor(props) {
         super(props);
@@ -32,6 +41,9 @@ class UserForm extends Component {
         switch (type) {
             case 'save':
                 this.props.onSubmit(this.state.user);
+                break;
+            case 'delete':
+                this.props.onDelete(this.props.userId);
                 break;
             default:
                 console.log(`nope, you probably didn't wanna reach this`)
@@ -61,11 +73,6 @@ class UserForm extends Component {
         let {classes, isAddMode} = this.props;
         let {user} = this.state;
 
-        let ageMenuItems = [];
-        for (let i=0; i<99; i++) {
-            ageMenuItems.push(<MenuItem key={i} value={i}>{i}</MenuItem>)
-        }
-
         return (
             <div>
                 {!isAddMode && (!user || isObjectEmpty(user)) ?
@@ -90,7 +97,7 @@ class UserForm extends Component {
                                 <MenuItem value={user.age}>
                                     <em>Current: {user.age}</em>
                                 </MenuItem>
-                                {ageMenuItems}
+                                {UserForm.generateAgeDropdownItems()}
                             </Select>
                         </FormControl>
                         <Divider/>
@@ -107,6 +114,7 @@ class UserForm extends Component {
                         <div>
                             <Button onClick={this.props.onCancel} text={'Go back'} classname={'cancel'}/>}
                             <Button text={'Save'} onClick={() => {this.onSubmit('save')}} />
+                            {!isAddMode && <Button text={'Delete'} onClick={()=>{this.onSubmit('delete')}}/>}
                         </div>
                     </div>
 
@@ -115,6 +123,12 @@ class UserForm extends Component {
         );
     };
 }
+
+UserForm.propTypes = {
+    classes: PropTypes.object.isRequired,
+    userId: PropTypes.number
+};
+
 
 const styles = theme => ({
     container: {

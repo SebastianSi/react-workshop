@@ -40,6 +40,11 @@ class UsersList extends Component {
         this.closeUserForm();
     };
 
+    onUserDelete = (userId) => {
+        mockApi.deleteUser(userId).then(this.fetchUsers);
+        this.closeUserForm()
+    };
+
     componentDidMount() {
         this.fetchUsers();
     }
@@ -69,6 +74,7 @@ class UsersList extends Component {
                         isAddMode={isAddMode}
                         userId={currentUserClicked}
                         onSubmit={this.onUserFormSubmit}
+                        onDelete={this.onUserDelete}
                         onCancel={this.closeUserForm}
                     /> :
                     <>
