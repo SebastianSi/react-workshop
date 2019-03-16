@@ -3,6 +3,7 @@ import UserListItem from './UserListItem';
 import UserForm from './UserForm';
 import mockApi from '../utils/mockApi';
 import Button from './common/Button';
+import {Link} from 'react-router-dom';
 
 class UsersList extends Component {
 
@@ -84,6 +85,7 @@ class UsersList extends Component {
                         </div>
                     </>
                 }
+                <Link to={'/contact'}> <Button text={'Contact Page'}/> </Link>
             </div>
         );
     }
