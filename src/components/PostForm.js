@@ -60,12 +60,8 @@ export class PostForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  // subscribe to store to get 'showPostForm' flag
-});
-const mapDispatchToProps = dispatch => ({
-  // create a function called 'togglePostForm' which dispatches the 'showPostForm' flag value to redux store
-});
+const mapStateToProps = state => ({});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(
   mapStateToProps,
