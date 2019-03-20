@@ -1,10 +1,14 @@
 const initialState = {
-  // add 'false' as initial value for the 'showPostForm' flag here
+  showPostForm: false
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    // handle 'POST_FORM_TOGGLE' action here
+    case 'POST_FORM_TOGGLE':
+      return {
+        ...state,
+        showPostForm: !state.showPostForm
+      };
 
     default:
       return state;

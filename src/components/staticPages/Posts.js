@@ -6,8 +6,7 @@ import Button from '@material-ui/core/Button';
 import PostForm from '../PostForm';
 import { withStyles } from '@material-ui/core/styles';
 import { randomInt } from '../../utils/utils';
-
-// import 'togglePostFormAction' action
+import { togglePostFormAction } from '../../actions/postsAction';
 
 const muiStyles = theme => ({
   button: {
@@ -17,8 +16,7 @@ const muiStyles = theme => ({
 
 export class Posts extends Component {
   render() {
-    //  the 'showPostForm' flag and 'togglePostForm' function should be on props
-    const { classes } = this.props;
+    const { classes, showPostForm, togglePostForm } = this.props;
 
     return (
       <div className="posts-container">
@@ -26,18 +24,10 @@ export class Posts extends Component {
 
         <div className="post-form-container">
           <h2>Post form</h2>
-          <Button
-            className={classes.button}
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              // call 'togglePostForm' function here but without the wrap arrow function
-            }}>
-            {// replace 'true' with the 'showPostForm' flag
-            true ? 'Hide Form' : 'Show Form'}
+          <Button className={classes.button} variant="contained" color="primary" onClick={togglePostForm}>
+            {showPostForm ? 'Hide Form' : 'Show Form'}
           </Button>
-          {// replace 'true' with the 'showPostForm' flag
-          true && <PostForm />}
+          {showPostForm && <PostForm />}
         </div>
 
         <h2>Posts</h2>
@@ -54,10 +44,12 @@ export class Posts extends Component {
 }
 
 const mapStateToProps = state => ({
-  // subscribe to store to get 'showPostForm' flag
+  showPostForm: state.postsReducer.showPostForm
 });
 const mapDispatchToProps = dispatch => ({
-  // create a function called 'togglePostForm' which dispatches the 'togglePostFormAction'
+  togglePostForm: () => {
+    dispatch(togglePostFormAction());
+  }
 });
 
 export default compose(
