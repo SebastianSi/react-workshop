@@ -7,21 +7,17 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 export class PostForm extends Component {
-  handleTitleChange = val => {
-    console.log(val);
-  };
-  handleDescriptionChange = val => {
-    console.log(val);
-  };
-  handleImageIndexChange = val => {
-    console.log(val);
-  };
-  handleLikesChange = val => {
-    console.log(val);
-  };
-
   render() {
-    const { title, description, imageIndex, likes } = this.props;
+    const {
+      title,
+      description,
+      imageIndex,
+      likes,
+      handleTitleChange,
+      handleDescriptionChange,
+      handleImageIndexChange,
+      handleLikesChange
+    } = this.props;
 
     return (
       <div className="post-form">
@@ -61,7 +57,20 @@ export class PostForm extends Component {
 }
 
 const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  handleTitleChange: val => {
+    console.log(val);
+  },
+  handleDescriptionChange: val => {
+    console.log(val);
+  },
+  handleImageIndexChange: val => {
+    console.log(val);
+  },
+  handleLikesChange: val => {
+    console.log(val);
+  }
+});
 
 export default connect(
   mapStateToProps,
