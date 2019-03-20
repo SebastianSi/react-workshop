@@ -5,6 +5,7 @@ import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { postFormTitleAction } from '../actions/postsAction';
 
 export class PostForm extends Component {
   render() {
@@ -21,14 +22,14 @@ export class PostForm extends Component {
 
     return (
       <div className="post-form">
-        <TextField label="Title" value={title} onChange={this.handleTitleChange} margin="normal" variant="outlined" />
+        <TextField label="Title" value={title} onChange={handleTitleChange} margin="normal" variant="outlined" />
         <TextField
           multiline
           rowsMax="20"
           rows="7"
           label="Description"
           value={description}
-          onChange={this.handleDescriptionChange}
+          onChange={handleDescriptionChange}
           margin="normal"
           variant="outlined"
         />
@@ -36,13 +37,13 @@ export class PostForm extends Component {
           type="number"
           label="Image Index"
           value={imageIndex}
-          onChange={this.handleImageIndexChange}
+          onChange={handleImageIndexChange}
           margin="normal"
           variant="outlined"
         />
         <FormControl variant="filled">
-          <InputLabel htmlFor="filled-age-native-simple">Likes</InputLabel>
-          <Select native value={likes} onChange={this.handleLikesChange} input={<FilledInput name="likes" />}>
+          <InputLabel>Likes</InputLabel>
+          <Select native value={likes} onChange={handleLikesChange} input={<FilledInput name="likes" />}>
             <option value={null}>None</option>
             <option value={1}>★☆☆☆☆</option>
             <option value={2}>★★☆☆☆</option>
@@ -56,19 +57,21 @@ export class PostForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  showPostForm: state.postsReducer.showPostForm
+});
 const mapDispatchToProps = dispatch => ({
-  handleTitleChange: val => {
-    console.log(val);
+  handleTitleChange: event => {
+    dispatch(postFormTitleAction(event.target.value));
   },
-  handleDescriptionChange: val => {
-    console.log(val);
+  handleDescriptionChange: event => {
+    console.log(event.target.value);
   },
-  handleImageIndexChange: val => {
-    console.log(val);
+  handleImageIndexChange: event => {
+    console.log(event.target.value);
   },
-  handleLikesChange: val => {
-    console.log(val);
+  handleLikesChange: event => {
+    console.log(event.target.value);
   }
 });
 

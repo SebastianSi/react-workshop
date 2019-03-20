@@ -1,0 +1,2 @@
+export const POST_FORM_TOGGLE = 'POST_FORM_TOGGLE';
+export const POST_FORM_TITLE = 'POST_FORM_TITLE';
