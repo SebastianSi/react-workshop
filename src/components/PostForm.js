@@ -94,13 +94,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(postFormTitleAction(event.target.value));
   },
   handleDescriptionChange: event => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
   },
   handleImageIndexChange: event => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
   },
   handleLikesChange: event => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
   }
 });
 
