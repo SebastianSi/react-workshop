@@ -45,7 +45,7 @@ export class PostForm extends Component {
           variant="outlined"
         />
         <FormControl variant="filled">
-          <InputLabel htmlFor="filled-age-native-simple">Likes</InputLabel>
+          <InputLabel>Likes</InputLabel>
           <Select native value={likes} onChange={this.handleLikesChange} input={<FilledInput name="likes" />}>
             <option value={null}>None</option>
             <option value={1}>★☆☆☆☆</option>
