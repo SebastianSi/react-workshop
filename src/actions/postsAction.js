@@ -3,7 +3,8 @@ import {
   POST_FORM_TITLE,
   POST_FORM_DESCRIPTION,
   POST_FORM_IMAGE_INDEX,
-  POST_FORM_LIKES
+  POST_FORM_LIKES,
+  ADD_POST
 } from './actionConstants';
 
 export const togglePostFormAction = () => ({
@@ -28,4 +29,9 @@ export const postFormImageIndexAction = inputVal => ({
 export const postFormLikesAction = inputVal => ({
   type: POST_FORM_LIKES,
   payload: inputVal
+});
+
+export const addPostAction = postObj => ({
+  type: ADD_POST,
+  payload: postObj
 });

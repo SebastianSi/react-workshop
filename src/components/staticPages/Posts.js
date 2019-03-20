@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 import PostForm from '../PostForm';
 import Post from '../Post';
-import { randomInt } from '../../utils/utils';
 import { togglePostFormAction } from '../../actions/postsAction';
 
 const muiStyles = () => ({
@@ -17,7 +16,7 @@ const muiStyles = () => ({
 
 export class Posts extends Component {
   render() {
-    const { classes, showPostForm, togglePostForm } = this.props;
+    const { classes, showPostForm, togglePostForm, posts } = this.props;
 
     return (
       <div className="posts-container">
@@ -33,11 +32,9 @@ export class Posts extends Component {
 
         <h2>Posts</h2>
         <div className="posts">
-          {Array(12)
-            .fill(randomInt())
-            .map((item, index) => (
-              <Post key={item + index} imgIndex={randomInt()} />
-            ))}
+          {posts.map((item, index) => (
+            <Post key={item + index} imgIndex={item.imageIndex} likesNumber={item.likes} />
+          ))}
         </div>
       </div>
     );
@@ -45,7 +42,8 @@ export class Posts extends Component {
 }
 
 const mapStateToProps = state => ({
-  showPostForm: state.postsReducer.showPostForm
+  showPostForm: state.postsReducer.showPostForm,
+  posts: state.postsReducer.posts
 });
 const mapDispatchToProps = dispatch => ({
   togglePostForm: () => {

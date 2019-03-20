@@ -5,6 +5,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,11 +14,16 @@ import {
   postFormTitleAction,
   postFormDescriptionAction,
   postFormImageIndexAction,
-  postFormLikesAction
+  postFormLikesAction,
+  addPostAction
 } from '../actions/postsAction';
 
 const muiStyles = theme => ({
   likes: {
+    marginTop: 15
+  },
+  button: {
+    height: 40,
     marginTop: 15
   }
 });
@@ -42,7 +48,8 @@ export class PostForm extends Component {
       handleTitleChange,
       handleDescriptionChange,
       handleImageIndexChange,
-      handleLikesChange
+      handleLikesChange,
+      addPost
     } = this.props;
 
     return (
@@ -86,13 +93,31 @@ export class PostForm extends Component {
             <option value={5}>★★★★★</option>
           </Select>
         </FormControl>
+
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            addPost({
+              title,
+              description,
+              imageIndex,
+              likes
+            });
+          }}>
+          Add Post
+        </Button>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  showPostForm: state.postsReducer.showPostForm
+  title: state.postsReducer.titleInput,
+  description: state.postsReducer.descriptionInput,
+  imageIndex: state.postsReducer.imageIndexInput,
+  likes: state.postsReducer.likesInput
 });
 const mapDispatchToProps = dispatch => ({
   handleTitleChange: event => {
@@ -106,6 +131,9 @@ const mapDispatchToProps = dispatch => ({
   },
   handleLikesChange: event => {
     dispatch(postFormLikesAction(event.target.value));
+  },
+  addPost: post => {
+    dispatch(addPostAction(post));
   }
 });
 
