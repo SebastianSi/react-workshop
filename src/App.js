@@ -4,6 +4,7 @@ import './styles/App.css';
 import UsersList from './components/UsersList';
 import Notfound from './components/staticPages/NotFound';
 import ContactPage from './components/staticPages/Contact';
+import Posts from './components/staticPages/Posts';
 import { Provider } from 'react-redux';
 import { store } from './store';
 
@@ -16,6 +17,7 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={UsersList} />
               <Route path="/contact/" exact component={ContactPage} />
+              <Route path="/posts" exact component={Posts} />
 
               <Route component={Notfound} />
             </Switch>

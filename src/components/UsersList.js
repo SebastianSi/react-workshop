@@ -97,6 +97,10 @@ class UsersList extends Component {
                 {' '}
                 <Button text={'Contact Page'} />{' '}
               </Link>
+              <Link to={'/posts'}>
+                {' '}
+                <Button text={'Posts Page'} />{' '}
+              </Link>
             </div>
           </>
         )}
