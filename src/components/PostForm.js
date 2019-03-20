@@ -9,7 +9,12 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withStyles } from '@material-ui/core/styles';
 
-import { postFormTitleAction } from '../actions/postsAction';
+import {
+  postFormTitleAction,
+  postFormDescriptionAction,
+  postFormImageIndexAction,
+  postFormLikesAction
+} from '../actions/postsAction';
 
 const muiStyles = theme => ({
   likes: {
@@ -94,13 +99,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(postFormTitleAction(event.target.value));
   },
   handleDescriptionChange: event => {
-    console.log(event.target.value);
+    dispatch(postFormDescriptionAction(event.target.value));
   },
   handleImageIndexChange: event => {
-    console.log(event.target.value);
+    dispatch(postFormImageIndexAction(event.target.value));
   },
   handleLikesChange: event => {
-    console.log(event.target.value);
+    dispatch(postFormLikesAction(event.target.value));
   }
 });
 
