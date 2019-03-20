@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import Post from '../Post';
-import Button from '@material-ui/core/Button';
-import PostForm from '../PostForm';
 import { withStyles } from '@material-ui/core/styles';
+
+import PostForm from '../PostForm';
+import Post from '../Post';
 import { randomInt } from '../../utils/utils';
 import { togglePostFormAction } from '../../actions/postsAction';
 
-const muiStyles = theme => ({
+const muiStyles = () => ({
   button: {
     height: 40
   }

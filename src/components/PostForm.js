@@ -1,15 +1,35 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import ReactDOM from 'react-dom';
 import TextField from '@material-ui/core/TextField';
-import FilledInput from '@material-ui/core/FilledInput';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withStyles } from '@material-ui/core/styles';
+
 import { postFormTitleAction } from '../actions/postsAction';
 
+const muiStyles = theme => ({
+  likes: {
+    marginTop: 15
+  }
+});
 export class PostForm extends Component {
+  state = {
+    labelWidth: 0
+  };
+
+  componentDidMount() {
+    this.setState({
+      labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth
+    });
+  }
+
   render() {
     const {
+      classes,
       title,
       description,
       imageIndex,
@@ -41,9 +61,18 @@ export class PostForm extends Component {
           margin="normal"
           variant="outlined"
         />
-        <FormControl variant="filled">
-          <InputLabel>Likes</InputLabel>
-          <Select native value={likes} onChange={handleLikesChange} input={<FilledInput name="likes" />}>
+        <FormControl variant="outlined" className={classes.likes}>
+          <InputLabel
+            ref={ref => {
+              this.InputLabelRef = ref;
+            }}>
+            Likes
+          </InputLabel>
+          <Select
+            native
+            value={likes}
+            onChange={handleLikesChange}
+            input={<OutlinedInput name="likes" labelWidth={this.state.labelWidth} />}>
             <option value={null}>None</option>
             <option value={1}>★☆☆☆☆</option>
             <option value={2}>★★☆☆☆</option>
@@ -75,7 +104,10 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  withStyles(muiStyles),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
 )(PostForm);
