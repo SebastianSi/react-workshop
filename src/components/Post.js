@@ -6,7 +6,11 @@ const Post = ({ imgIndex }) => (
     <h4>Title</h4>
     <img src={`https://picsum.photos/300/300/?image=${imgIndex}`} alt="lorem picsum" />
     <p>description</p>
-    <div className="likes">{randomInt(100)} ♡</div>
+    <div className="likes">
+      {// replace randomInt(100) with 'likes' from props
+      randomInt(100)}{' '}
+      ♡
+    </div>
   </div>
 );
 

@@ -3,7 +3,8 @@ import {
   POST_FORM_TITLE,
   POST_FORM_DESCRIPTION,
   POST_FORM_IMAGE_INDEX,
-  POST_FORM_LIKES
+  POST_FORM_LIKES,
+  ADD_POST
 } from '../actions/actionConstants';
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   descriptionInput: '',
   imageIndexInput: '',
   likesInput: ''
+  // initialize 'posts' with an empty array
 };
 
 const reducer = (state = initialState, action) => {
@@ -45,6 +47,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         likesInput: action.payload
       };
+
+    case ADD_POST:
+      // add post to the 'posts' array
+      return;
 
     default:
       return state;

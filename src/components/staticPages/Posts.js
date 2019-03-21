@@ -33,7 +33,9 @@ export class Posts extends Component {
 
         <h2>Posts</h2>
         <div className="posts">
-          {Array(12)
+          {// replace Array(12).fill(randomInt()) with 'posts'
+          // and pass the proper 'imgIndex' and 'likes' to Post component
+          Array(12)
             .fill(randomInt())
             .map((item, index) => (
               <Post key={item + index} imgIndex={randomInt()} />
@@ -46,6 +48,7 @@ export class Posts extends Component {
 
 const mapStateToProps = state => ({
   showPostForm: state.postsReducer.showPostForm
+  // subscribe to postsReducer for posts array
 });
 const mapDispatchToProps = dispatch => ({
   togglePostForm: () => {
