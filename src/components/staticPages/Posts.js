@@ -33,7 +33,13 @@ export class Posts extends Component {
         <h2>Posts</h2>
         <div className="posts">
           {posts.map((item, index) => (
-            <Post key={item + index} imgIndex={item.imageIndex} likesNumber={item.likes} />
+            <Post
+              key={item + index}
+              title={item.title}
+              description={item.description}
+              imgIndex={item.imageIndex}
+              likesNumber={item.likes}
+            />
           ))}
         </div>
       </div>
