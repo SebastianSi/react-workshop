@@ -15,7 +15,8 @@ import {
   postFormDescriptionAction,
   postFormImageIndexAction,
   postFormLikesAction,
-  addPostAction
+  addPostAction,
+  resetPostFormAction
 } from '../actions/postsAction';
 
 const muiStyles = theme => ({
@@ -47,7 +48,6 @@ export class PostForm extends Component {
   }
 
   render() {
-    // get 'resetForm' from props
     const {
       classes,
       title,
@@ -58,7 +58,8 @@ export class PostForm extends Component {
       handleDescriptionChange,
       handleImageIndexChange,
       handleLikesChange,
-      addPost
+      addPost,
+      resetForm
     } = this.props;
 
     return (
@@ -86,15 +87,17 @@ export class PostForm extends Component {
           <InputLabel
             ref={ref => {
               this.InputLabelRef = ref;
-            }}>
+            }}
+            htmlFor="outlined-likes">
             Likes
           </InputLabel>
           <Select
             native
             value={likes}
             onChange={handleLikesChange}
-            input={<OutlinedInput name="likes" labelWidth={this.state.labelWidth} />}>
-            <option value={null}>None</option>
+            input={<OutlinedInput name="likes" labelWidth={this.state.labelWidth} />}
+            id="outlined-likes">
+            <option value="" />
             <option value={1}>★☆☆☆☆</option>
             <option value={2}>★★☆☆☆</option>
             <option value={3}>★★★☆☆</option>
@@ -117,13 +120,7 @@ export class PostForm extends Component {
           }}>
           Add Post
         </Button>
-        <Button
-          className={classes.resetButton}
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            // call 'resetForm' here, you can remove the wrap arrow function
-          }}>
+        <Button className={classes.resetButton} variant="contained" color="primary" onClick={resetForm}>
           Reset Form
         </Button>
       </div>
@@ -152,8 +149,10 @@ const mapDispatchToProps = dispatch => ({
   },
   addPost: post => {
     dispatch(addPostAction(post));
+  },
+  resetForm: () => {
+    dispatch(resetPostFormAction());
   }
-  // add 'resetForm' function
 });
 
 export default compose(

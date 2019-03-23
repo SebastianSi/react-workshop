@@ -4,8 +4,8 @@ import {
   POST_FORM_DESCRIPTION,
   POST_FORM_IMAGE_INDEX,
   POST_FORM_LIKES,
-  ADD_POST
-  // import RESET_POST_FORM from 'actionsConstants.js'
+  ADD_POST,
+  RESET_POST_FORM
 } from './actionConstants';
 
 export const togglePostFormAction = () => ({
@@ -37,4 +37,6 @@ export const addPostAction = postObj => ({
   payload: postObj
 });
 
-// create and export 'resetPostFormAction' with 'type: RESET_POST_FORM' which doesn't have any param
+export const resetPostFormAction = () => ({
+  type: RESET_POST_FORM
+});

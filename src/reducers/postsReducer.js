@@ -4,8 +4,8 @@ import {
   POST_FORM_DESCRIPTION,
   POST_FORM_IMAGE_INDEX,
   POST_FORM_LIKES,
-  ADD_POST
-  // import RESET_POST_FORM from 'actionsConstants.js'
+  ADD_POST,
+  RESET_POST_FORM
 } from '../actions/actionConstants';
 
 const initialState = {
@@ -55,7 +55,14 @@ const reducer = (state = initialState, action) => {
         posts: [...state.posts, action.payload]
       };
 
-      // handle 'RESET_POST_FORM' action
+    case RESET_POST_FORM:
+      return {
+        ...state,
+        titleInput: '',
+        descriptionInput: '',
+        imageIndexInput: '',
+        likesInput: ''
+      };
 
     default:
       return state;
