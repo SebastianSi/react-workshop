@@ -5,6 +5,7 @@ import {
   POST_FORM_IMAGE_INDEX,
   POST_FORM_LIKES,
   ADD_POST
+  // import RESET_POST_FORM from 'actionsConstants.js'
 } from '../actions/actionConstants';
 
 const initialState = {
