@@ -22,9 +22,17 @@ const muiStyles = theme => ({
   likes: {
     marginTop: 15
   },
-  button: {
+  addButton: {
     height: 40,
-    marginTop: 15
+    marginTop: 15,
+    marginright: 15,
+    backgroundColor: 'green'
+  },
+  resetButton: {
+    height: 40,
+    marginTop: 15,
+    marginLeft: 15,
+    backgroundColor: 'orange'
   }
 });
 export class PostForm extends Component {
@@ -95,7 +103,7 @@ export class PostForm extends Component {
         </FormControl>
 
         <Button
-          className={classes.button}
+          className={classes.addButton}
           variant="contained"
           color="primary"
           onClick={() => {
@@ -107,6 +115,15 @@ export class PostForm extends Component {
             });
           }}>
           Add Post
+        </Button>
+        <Button
+          className={classes.resetButton}
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            console.log('TO DO reset form');
+          }}>
+          Reset Form
         </Button>
       </div>
     );
