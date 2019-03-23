@@ -35,3 +35,5 @@ export const addPostAction = postObj => ({
   type: ADD_POST,
   payload: postObj
 });
+
+// create and export 'resetPostFormAction' with 'type: RESET_POST_FORM' which doesn't have any param

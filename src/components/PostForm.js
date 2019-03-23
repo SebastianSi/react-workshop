@@ -47,6 +47,7 @@ export class PostForm extends Component {
   }
 
   render() {
+    // get 'resetForm' from props
     const {
       classes,
       title,
@@ -121,7 +122,7 @@ export class PostForm extends Component {
           variant="contained"
           color="primary"
           onClick={() => {
-            console.log('TO DO reset form');
+            // call 'resetForm' here, you can remove the wrap arrow function
           }}>
           Reset Form
         </Button>
@@ -152,6 +153,7 @@ const mapDispatchToProps = dispatch => ({
   addPost: post => {
     dispatch(addPostAction(post));
   }
+  // add 'resetForm' function
 });
 
 export default compose(

@@ -54,6 +54,8 @@ const reducer = (state = initialState, action) => {
         posts: [...state.posts, action.payload]
       };
 
+      // handle 'RESET_POST_FORM' action
+
     default:
       return state;
   }
