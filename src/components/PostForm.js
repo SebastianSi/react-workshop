@@ -16,7 +16,8 @@ import {
   postFormImageIndexAction,
   postFormLikesAction,
   addPostAction,
-  resetPostFormAction
+  resetPostFormAction,
+  openResetPostFormSnackbar
 } from '../actions/postsAction';
 
 const muiStyles = theme => ({
@@ -59,7 +60,7 @@ export class PostForm extends Component {
       handleImageIndexChange,
       handleLikesChange,
       addPost,
-      resetForm
+      openSnackbar
     } = this.props;
 
     return (
@@ -120,7 +121,7 @@ export class PostForm extends Component {
           }}>
           Add Post
         </Button>
-        <Button className={classes.resetButton} variant="contained" color="primary" onClick={resetForm}>
+        <Button className={classes.resetButton} variant="contained" color="primary" onClick={openSnackbar}>
           Reset Form
         </Button>
       </div>
@@ -150,8 +151,8 @@ const mapDispatchToProps = dispatch => ({
   addPost: post => {
     dispatch(addPostAction(post));
   },
-  resetForm: () => {
-    dispatch(resetPostFormAction());
+  openSnackbar: () => {
+    dispatch(openResetPostFormSnackbar());
   }
 });
 

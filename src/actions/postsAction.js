@@ -5,7 +5,9 @@ import {
   POST_FORM_IMAGE_INDEX,
   POST_FORM_LIKES,
   ADD_POST,
-  RESET_POST_FORM
+  RESET_POST_FORM,
+  OPEN_RESET_POST_FORM_SNACKBAR,
+  CLOSE_RESET_POST_FORM_SNACKBAR
 } from './actionConstants';
 
 export const togglePostFormAction = () => ({
@@ -67,9 +69,28 @@ export const addPostAction = postObj => ({
 //   };
 // };
 
-/////////////////////////////////////////////////////////
-export const resetPostFormAction = () => (dispatch, getState) => {
+export const resetPostFormAction = () => ({
+  type: RESET_POST_FORM
+});
+
+export const openResetPostFormSnackbar = () => ({
+  type: OPEN_RESET_POST_FORM_SNACKBAR
+});
+
+// the "classic" approach
+// export const closeResetPostFormSnackbar = resetForm => ({
+//   type: CLOSE_RESET_POST_FORM_SNACKBAR,
+//   payload: resetForm
+// });
+
+// with "redux-thunk" approach
+export const closeResetPostFormSnackbar = resetForm => (dispatch, getState) => {
+  if (resetForm) {
+    dispatch({
+      type: RESET_POST_FORM
+    });
+  }
   dispatch({
-    type: RESET_POST_FORM
+    type: CLOSE_RESET_POST_FORM_SNACKBAR
   });
 };
