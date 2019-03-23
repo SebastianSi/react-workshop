@@ -16,7 +16,8 @@ import {
   postFormImageIndexAction,
   postFormLikesAction,
   addPostAction
-} from '../actions/postsAction';
+  // import 'resetPostFormAction' from 'postsActions'
+} from '../actions/postsActions';
 
 const muiStyles = theme => ({
   likes: {
@@ -47,7 +48,6 @@ export class PostForm extends Component {
   }
 
   render() {
-    // get 'resetForm' from props
     const {
       classes,
       title,
@@ -59,6 +59,7 @@ export class PostForm extends Component {
       handleImageIndexChange,
       handleLikesChange,
       addPost
+      // get 'resetForm' from props
     } = this.props;
 
     return (
@@ -94,7 +95,7 @@ export class PostForm extends Component {
             value={likes}
             onChange={handleLikesChange}
             input={<OutlinedInput name="likes" labelWidth={this.state.labelWidth} />}>
-            <option value={null}>None</option>
+            <option value={null} />
             <option value={1}>★☆☆☆☆</option>
             <option value={2}>★★☆☆☆</option>
             <option value={3}>★★★☆☆</option>
