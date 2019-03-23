@@ -37,6 +37,39 @@ export const addPostAction = postObj => ({
   payload: postObj
 });
 
-export const resetPostFormAction = () => ({
-  type: RESET_POST_FORM
-});
+// export const resetPostFormAction = () => ({
+//   type: RESET_POST_FORM
+// });
+
+// same as
+
+// export const resetPostFormAction = function() {
+//   return {
+//     type: RESET_POST_FORM
+//   };
+// };
+
+/////////////////////////////////////////////////////////
+// export const resetPostFormAction = function() {
+//   return function(dispatch, getState) {
+//     // you can get the global state by calling getState()
+//     console.log(getState());
+
+//     fetch('https://jsonplaceholder.typicode.com/todos')
+//     .then(response => response.json())
+//     .then(json => {
+//       console.log(json);
+//       // you can dispatch an action here
+//     });
+//     dispatch({
+//       type: RESET_POST_FORM
+//     });
+//   };
+// };
+
+/////////////////////////////////////////////////////////
+export const resetPostFormAction = () => (dispatch, getState) => {
+  dispatch({
+    type: RESET_POST_FORM
+  });
+};
