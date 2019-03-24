@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PostForm from '../PostForm';
 import Post from '../Post';
 import ResetSnackbar from '../ResetSnackbar';
-import { togglePostFormAction } from '../../actions/postsAction';
+import { togglePostFormAction } from '../../actions/postsActions';
 
 const muiStyles = () => ({
   button: {

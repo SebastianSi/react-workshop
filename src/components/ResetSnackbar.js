@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { withStyles } from '@material-ui/core/styles';
 
-import { closeResetPostFormSnackbar } from '../actions/postsAction';
-
-const muiStyles = theme => ({
-  close: {
-    padding: 0
-  }
-});
+import { closeResetPostFormSnackbar } from '../actions/postsActions';
 
 class ResetSnackbar extends Component {
   state = {
@@ -32,7 +23,7 @@ class ResetSnackbar extends Component {
   };
 
   render() {
-    const { classes, open, closeSnackbar } = this.props;
+    const { open, closeSnackbar } = this.props;
 
     return (
       <div>
@@ -82,10 +73,7 @@ const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default compose(
-  withStyles(muiStyles),
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
 )(ResetSnackbar);

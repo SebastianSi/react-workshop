@@ -18,7 +18,7 @@ import {
   addPostAction,
   resetPostFormAction,
   openResetPostFormSnackbar
-} from '../actions/postsAction';
+} from '../actions/postsActions';
 
 const muiStyles = theme => ({
   likes: {
