@@ -1,6 +1,6 @@
 import {
   POST_FORM_TOGGLE,
-  // remove the next 2 unnecessary imports
+  // remove the next 3 unnecessary imports
   POST_FORM_DESCRIPTION,
   POST_FORM_IMAGE_INDEX,
   POST_FORM_LIKES,
@@ -26,6 +26,7 @@ export const postFormImageIndexAction = inputVal => ({
   payload: inputVal
 });
 
+// remove
 export const postFormLikesAction = inputVal => ({
   type: POST_FORM_LIKES,
   payload: inputVal

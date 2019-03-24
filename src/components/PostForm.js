@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import TextField from '@material-ui/core/TextField';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import { withStyles } from '@material-ui/core/styles';
 
+// remove block of imports after connecting the 'likes' field to redux-form
+import ReactDOM from 'react-dom';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
 import {
-  postFormDescriptionAction, // remove
-  postFormImageIndexAction, // remove
-  postFormLikesAction,
+  postFormDescriptionAction, // remove after connecting the 'description' field to redux-form
+  postFormImageIndexAction, // remove after connecting the 'imageIndex' field to redux-form
+  postFormLikesAction, // remove after connecting the 'likes' field to redux-form
   addPostAction,
   openResetPostFormSnackbar
 } from '../actions/postsActions';
 import TextInput from '../inputs/Text';
 
 const muiStyles = theme => ({
+  // remove 'likes' style after connecting the 'likes' field to redux-form
   likes: {
     marginTop: 15
   },
@@ -65,14 +68,16 @@ const validate = values => {
   } else if (values.title.includes('poop')) {
     errors.title = 'Invalid title';
   }
-  // add some validation for 'description' and 'imageIndex'
+  // you can add some validation for 'description' and 'imageIndex'
   return errors;
 };
 export class PostForm extends Component {
+  // remove after implementing the 'likes' field
   state = {
     labelWidth: 0
   };
 
+  // remove after implementing the 'likes' field
   componentDidMount() {
     this.setState({
       labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth
@@ -105,7 +110,7 @@ export class PostForm extends Component {
         />
         {/* replace 'TextField' with the 'Field' element and pass forward the required props
             'value' and 'onChange' can be removed, not needed anymore
-            'name' and 'component' are mandatory
+            'name' and 'component' (TextField) are mandatory
             'multiline', 'rowsMax', 'rows', 'label', 'margin' and 'variant' needed material-ui props
         */}
         <TextField
@@ -120,9 +125,9 @@ export class PostForm extends Component {
         />
         {/* replace 'TextField' with the 'Field' element and pass forward the required props
             'value' and 'onChange' can be removed, not needed anymore
-            'name' and 'component' are mandatory
+            'name' and 'component' (TextField) are mandatory
             'type', 'label', 'margin' and 'variant' are material-ui props
-        */}
+          */}
         <TextField
           type="number"
           label="Image Index"
@@ -131,6 +136,11 @@ export class PostForm extends Component {
           value={imageIndex}
           onChange={handleImageIndexChange}
         />
+        {/* replace 'TextField' with the 'Field' element and pass forward the required props
+            'value' and 'onChange' can be removed, not needed anymore
+            'name' and 'component' (SelectInput) are mandatory
+            'label' and 'variant' are material-ui props
+        */}
         <FormControl variant="outlined" className={classes.likes}>
           <InputLabel
             ref={ref => {
@@ -176,21 +186,22 @@ export class PostForm extends Component {
   }
 }
 
+// remove 'mapStateToProps' after connecting every field to redux-form
 const mapStateToProps = state => ({
-  title: state.postsReducer.titleInput,
   description: state.postsReducer.descriptionInput,
   imageIndex: state.postsReducer.imageIndexInput,
   likes: state.postsReducer.likesInput
 });
 const mapDispatchToProps = dispatch => ({
-  // remove
+  // remove after connecting the 'description' field to redux-form
   handleDescriptionChange: event => {
     dispatch(postFormDescriptionAction(event.target.value));
   },
-  // remove
+  // remove after connecting the 'imageIndex' field to redux-form
   handleImageIndexChange: event => {
     dispatch(postFormImageIndexAction(event.target.value));
   },
+  // remove after connecting the 'likes' field to redux-form
   handleLikesChange: event => {
     dispatch(postFormLikesAction(event.target.value));
   },
@@ -205,7 +216,7 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   withStyles(muiStyles),
   connect(
-    mapStateToProps,
+    mapStateToProps, // change to 'null' after connecting every field to redux-form
     mapDispatchToProps
   ),
   reduxForm({
