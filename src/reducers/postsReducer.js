@@ -1,6 +1,6 @@
 import {
   POST_FORM_TOGGLE,
-  POST_FORM_TITLE,
+  // remove the next 3 unnecessary imports
   POST_FORM_DESCRIPTION,
   POST_FORM_IMAGE_INDEX,
   POST_FORM_LIKES,
@@ -28,24 +28,21 @@ const reducer = (state = initialState, action) => {
         showPostForm: !state.showPostForm
       };
 
-    case POST_FORM_TITLE:
-      return {
-        ...state,
-        titleInput: action.payload
-      };
-
+    // remove
     case POST_FORM_DESCRIPTION:
       return {
         ...state,
         descriptionInput: action.payload
       };
 
+    // remove
     case POST_FORM_IMAGE_INDEX:
       return {
         ...state,
         imageIndexInput: action.payload
       };
 
+    // remove
     case POST_FORM_LIKES:
       return {
         ...state,

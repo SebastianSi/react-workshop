@@ -8,16 +8,17 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { Field, reduxForm } from 'redux-form';
 import { withStyles } from '@material-ui/core/styles';
 
 import {
-  postFormTitleAction,
   postFormDescriptionAction,
   postFormImageIndexAction,
   postFormLikesAction,
   addPostAction,
   openResetPostFormSnackbar
 } from '../actions/postsActions';
+import TextInput from '../inputs/Text';
 
 const muiStyles = theme => ({
   likes: {
@@ -36,6 +37,37 @@ const muiStyles = theme => ({
     backgroundColor: 'orange'
   }
 });
+
+// field level validation
+// const fieldLevelValidation = (val, allValues, props) => {
+//   if (!val) {
+//     return 'Required - fieldLevelValidation';
+//   } else if (val === 'asd') {
+//     return 'Invalid - fieldLevelValidation';
+//   }
+//   return;
+// };
+
+const validate = values => {
+  const errors = {};
+  // // handle required fields all at once
+  // const requiredFields = ['title', 'description', 'imageIndex', 'likes'];
+  // requiredFields.forEach(field => {
+  //   if (!values[field]) {
+  //     errors[field] = 'Required field';
+  //   }
+  // });
+
+  if (!values.title) {
+    errors.title = 'Required field';
+  } else if (values.title.length > 20) {
+    errors.title = 'Max 20 characters allowed';
+  } else if (values.title.includes('poop')) {
+    errors.title = 'Invalid title';
+  }
+  // add some validation for 'description' and 'imageIndex'
+  return errors;
+};
 export class PostForm extends Component {
   state = {
     labelWidth: 0
@@ -54,7 +86,6 @@ export class PostForm extends Component {
       description,
       imageIndex,
       likes,
-      handleTitleChange,
       handleDescriptionChange,
       handleImageIndexChange,
       handleLikesChange,
@@ -64,24 +95,41 @@ export class PostForm extends Component {
 
     return (
       <div className="post-form">
-        <TextField label="Title" value={title} onChange={handleTitleChange} margin="normal" variant="outlined" />
+        <Field
+          // validate={fieldLevelValidation}
+          name="title" // mandatory
+          label="Title" // needed but not mandatory
+          margin="normal" // material-ui stuff
+          variant="outlined" // material-ui stuff
+          component={TextInput} // mandatory
+        />
+        {/* replace 'TextField' with the 'Field' element and pass forward the required props
+            'value' and 'onChange' can be removed, not needed anymore
+            'name' and 'component' are mandatory
+            'multiline', 'rowsMax', 'rows', 'label', 'margin' and 'variant' needed material-ui props
+        */}
         <TextField
           multiline
           rowsMax="20"
           rows="7"
           label="Description"
-          value={description}
-          onChange={handleDescriptionChange}
           margin="normal"
           variant="outlined"
+          value={description}
+          onChange={handleDescriptionChange}
         />
+        {/* replace 'TextField' with the 'Field' element and pass forward the required props
+            'value' and 'onChange' can be removed, not needed anymore
+            'name' and 'component' are mandatory
+            'type', 'label', 'margin' and 'variant' are material-ui props
+        */}
         <TextField
           type="number"
           label="Image Index"
-          value={imageIndex}
-          onChange={handleImageIndexChange}
           margin="normal"
           variant="outlined"
+          value={imageIndex}
+          onChange={handleImageIndexChange}
         />
         <FormControl variant="outlined" className={classes.likes}>
           <InputLabel
@@ -135,9 +183,6 @@ const mapStateToProps = state => ({
   likes: state.postsReducer.likesInput
 });
 const mapDispatchToProps = dispatch => ({
-  handleTitleChange: event => {
-    dispatch(postFormTitleAction(event.target.value));
-  },
   handleDescriptionChange: event => {
     dispatch(postFormDescriptionAction(event.target.value));
   },
@@ -160,5 +205,9 @@ export default compose(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )
+  ),
+  reduxForm({
+    form: 'postForm',
+    validate
+  })
 )(PostForm);
