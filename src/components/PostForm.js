@@ -16,7 +16,6 @@ import {
   postFormImageIndexAction,
   postFormLikesAction,
   addPostAction,
-  resetPostFormAction,
   openResetPostFormSnackbar
 } from '../actions/postsActions';
 
