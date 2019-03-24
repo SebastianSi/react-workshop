@@ -12,8 +12,8 @@ import { Field, reduxForm } from 'redux-form';
 import { withStyles } from '@material-ui/core/styles';
 
 import {
-  postFormDescriptionAction,
-  postFormImageIndexAction,
+  postFormDescriptionAction, // remove
+  postFormImageIndexAction, // remove
   postFormLikesAction,
   addPostAction,
   openResetPostFormSnackbar
@@ -183,9 +183,11 @@ const mapStateToProps = state => ({
   likes: state.postsReducer.likesInput
 });
 const mapDispatchToProps = dispatch => ({
+  // remove
   handleDescriptionChange: event => {
     dispatch(postFormDescriptionAction(event.target.value));
   },
+  // remove
   handleImageIndexChange: event => {
     dispatch(postFormImageIndexAction(event.target.value));
   },

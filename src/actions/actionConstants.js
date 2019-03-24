@@ -1,5 +1,5 @@
 export const POST_FORM_TOGGLE = 'POST_FORM_TOGGLE';
-// remove the next 3 unnecessary lines
+// remove the next 2 unnecessary lines
 export const POST_FORM_DESCRIPTION = 'POST_FORM_DESCRIPTION';
 export const POST_FORM_IMAGE_INDEX = 'POST_FORM_IMAGE_INDEX';
 export const POST_FORM_LIKES = 'POST_FORM_LIKES';
