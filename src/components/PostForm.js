@@ -17,7 +17,7 @@ import {
   postFormLikesAction,
   addPostAction,
   resetPostFormAction
-} from '../actions/postsAction';
+} from '../actions/postsActions';
 
 const muiStyles = theme => ({
   likes: {

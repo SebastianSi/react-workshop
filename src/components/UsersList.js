@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from './common/Button';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { usersAction } from '../actions/usersAction';
+import { usersAction } from '../actions/usersActions';
 
 class UsersList extends Component {
   constructor(props) {
