@@ -1,9 +1,5 @@
 import {
   POST_FORM_TOGGLE,
-  // remove the next 3 unnecessary imports
-  POST_FORM_DESCRIPTION,
-  POST_FORM_IMAGE_INDEX,
-  POST_FORM_LIKES,
   ADD_POST,
   RESET_POST_FORM,
   OPEN_RESET_POST_FORM_SNACKBAR,
@@ -12,24 +8,6 @@ import {
 
 export const togglePostFormAction = () => ({
   type: POST_FORM_TOGGLE
-});
-
-// remove
-export const postFormDescriptionAction = inputVal => ({
-  type: POST_FORM_DESCRIPTION,
-  payload: inputVal
-});
-
-// remove
-export const postFormImageIndexAction = inputVal => ({
-  type: POST_FORM_IMAGE_INDEX,
-  payload: inputVal
-});
-
-// remove
-export const postFormLikesAction = inputVal => ({
-  type: POST_FORM_LIKES,
-  payload: inputVal
 });
 
 export const addPostAction = postObj => ({
