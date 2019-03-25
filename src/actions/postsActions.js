@@ -21,7 +21,6 @@ export const openResetPostFormSnackbar = () => ({
   type: OPEN_RESET_POST_FORM_SNACKBAR
 });
 
-// with "redux-thunk" approach
 export const closeResetPostFormSnackbar = resetForm => (dispatch, getState) => {
   if (resetForm) {
     dispatch(reset('postForm'));
