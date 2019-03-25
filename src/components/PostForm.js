@@ -24,25 +24,8 @@ const muiStyles = theme => ({
   }
 });
 
-// field level validation
-// const fieldLevelValidation = (val, allValues, props) => {
-//   if (!val) {
-//     return 'Required - fieldLevelValidation';
-//   } else if (val === 'asd') {
-//     return 'Invalid - fieldLevelValidation';
-//   }
-//   return;
-// };
-
 const validate = values => {
   const errors = {};
-  // // handle required fields all at once
-  // const requiredFields = ['title', 'description', 'imageIndex', 'likes'];
-  // requiredFields.forEach(field => {
-  //   if (!values[field]) {
-  //     errors[field] = 'Required field';
-  //   }
-  // });
 
   if (!values.title) {
     errors.title = 'Required field';
@@ -87,8 +70,10 @@ export class PostForm extends Component {
           color="primary"
           onClick={() => {
             addPost({
-              // re-add the input fields now taken from redux-form,
-              // the ones returned in mapStateToProps
+              title,
+              description,
+              imageIndex,
+              likes
             });
           }}>
           Add Post
@@ -105,8 +90,10 @@ const mapStateToProps = state => {
   const selector = formValueSelector('postForm');
 
   return {
-    title: selector(state, 'title')
-    // do the same for the rest of the fields
+    title: selector(state, 'title'),
+    description: selector(state, 'description'),
+    imageIndex: selector(state, 'imageIndex'),
+    likes: selector(state, 'likes')
   };
 };
 
