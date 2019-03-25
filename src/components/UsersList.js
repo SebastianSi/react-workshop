@@ -54,10 +54,7 @@ class UsersList extends Component {
   }
 
   fetchUsers = () => {
-    mockApi.fetchUsers().then(users => {
-      this.props.getUsers(users);
-      // this.setState({ users });
-    });
+    this.props.getUsers();
   };
 
   renderUsersList = users => (
@@ -125,8 +122,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getUsers: users => {
-    dispatch(usersAction(users));
+  getUsers: () => {
+    dispatch(usersAction());
   }
 });
 

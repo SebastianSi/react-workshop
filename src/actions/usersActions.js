@@ -1,4 +1,10 @@
-export const usersAction = users => ({
-  type: 'GET_USERS',
-  payload: users
-});
+import mockApi from '../utils/mockApi';
+
+export const usersAction = () => (dispatch, getState) => {
+  mockApi.fetchUsers().then(users => {
+    dispatch({
+      type: 'GET_USERS',
+      payload: users
+    });
+  });
+};
