@@ -87,10 +87,8 @@ export class PostForm extends Component {
           color="primary"
           onClick={() => {
             addPost({
-              title,
-              description,
-              imageIndex,
-              likes
+              // re-add the input fields now taken from redux-form,
+              // the ones returned in mapStateToProps
             });
           }}>
           Add Post
@@ -107,10 +105,8 @@ const mapStateToProps = state => {
   const selector = formValueSelector('postForm');
 
   return {
-    title: selector(state, 'title'),
-    description: selector(state, 'description'),
-    imageIndex: selector(state, 'imageIndex'),
-    likes: selector(state, 'likes')
+    title: selector(state, 'title')
+    // do the same for the rest of the fields
   };
 };
 
