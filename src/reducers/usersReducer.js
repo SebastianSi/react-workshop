@@ -2,7 +2,7 @@ const initialState = {
   users: []
 };
 
-const users = (state = initialState, action) => {
+export const users = (state = initialState, action) => {
   switch (action.type) {
     case 'GET_USERS':
       return {
