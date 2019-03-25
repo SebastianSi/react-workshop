@@ -4,7 +4,9 @@ import thunk from 'redux-thunk'
 
 import {
   togglePostFormAction,
-  addPostAction
+  addPostAction,
+  openResetPostFormSnackbar,
+  closeResetPostFormSnackbar
 } from '../postsActions';
 import {
   POST_FORM_TOGGLE,
@@ -37,7 +39,13 @@ describe('async posts actions', () => {
   })
 
   it('should call close reset post form action', () => {
+    const store = mockStore({});
     
+    const expectedAction = {
+      type: CLOSE_RESET_POST_FORM_SNACKBAR
+    };
+    
+    expect(store.dispatch(closeResetPostFormSnackbar(false))).toEqual(expectedAction);
   });
 })
 
@@ -51,6 +59,10 @@ describe('sync posts actions', () => {
   });
 
   it('should call open reset post form action', () => {
-    
+    const expectedAction = {
+      type: OPEN_RESET_POST_FORM_SNACKBAR
+    };
+
+    expect(openResetPostFormSnackbar()).toEqual(expectedAction);
   });
 });
