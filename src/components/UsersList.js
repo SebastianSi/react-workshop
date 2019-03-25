@@ -54,6 +54,7 @@ class UsersList extends Component {
   }
 
   fetchUsers = () => {
+    // just call 'this.props.getUsers()' without any api call
     mockApi.fetchUsers().then(users => {
       this.props.getUsers(users);
       // this.setState({ users });
@@ -125,6 +126,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  // remove users param
   getUsers: users => {
     dispatch(usersAction(users));
   }
