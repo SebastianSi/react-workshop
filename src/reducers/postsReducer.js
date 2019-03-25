@@ -74,7 +74,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case CLOSE_RESET_POST_FORM_SNACKBAR:
-      // if (action.payload) {
+      // if (action.resetForm) {
       //   return {
       //     ...state,
       //     titleInput: '',
