@@ -25,7 +25,6 @@ class SelectInput extends Component {
 
   render() {
     const { classes, label, name, input, variant, ...custom } = this.props;
-    console.log('SelectInputProps---', this.props);
 
     return (
       <FormControl variant={variant} className={classes.likes}>

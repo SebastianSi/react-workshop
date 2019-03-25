@@ -1,70 +1,33 @@
+import { reset } from 'redux-form';
 import {
   POST_FORM_TOGGLE,
   ADD_POST,
-  RESET_POST_FORM,
   OPEN_RESET_POST_FORM_SNACKBAR,
   CLOSE_RESET_POST_FORM_SNACKBAR
 } from './actionConstants';
-
 export const togglePostFormAction = () => ({
   type: POST_FORM_TOGGLE
 });
 
-export const addPostAction = postObj => ({
-  type: ADD_POST,
-  payload: postObj
-});
-
-// export const resetPostFormAction = () => ({
-//   type: RESET_POST_FORM
-// });
-
-// same as
-
-// export const resetPostFormAction = function() {
-//   return {
-//     type: RESET_POST_FORM
-//   };
-// };
-
-/////////////////////////////////////////////////////////
-// export const resetPostFormAction = function() {
-//   return function(dispatch, getState) {
-//     // you can get the global state by calling getState()
-//     console.log(getState());
-
-//     fetch('https://jsonplaceholder.typicode.com/todos')
-//     .then(response => response.json())
-//     .then(json => {
-//       console.log(json);
-//       // you can dispatch an action here
-//     });
-//     dispatch({
-//       type: RESET_POST_FORM
-//     });
-//   };
-// };
-
-export const resetPostFormAction = () => ({
-  type: RESET_POST_FORM
-});
+export const addPostAction = postObj => (dispatch, getState) => {
+  dispatch({
+    type: ADD_POST,
+    payload: postObj
+  });
+  dispatch(reset('postForm'));
+};
 
 export const openResetPostFormSnackbar = () => ({
   type: OPEN_RESET_POST_FORM_SNACKBAR
 });
 
-// the "classic" approach
-// export const closeResetPostFormSnackbar = resetForm => ({
-//   type: CLOSE_RESET_POST_FORM_SNACKBAR,
-//   payload: resetForm
-// });
-
 // with "redux-thunk" approach
 export const closeResetPostFormSnackbar = resetForm => (dispatch, getState) => {
   if (resetForm) {
-    dispatch({
-      type: RESET_POST_FORM
-    });
+    dispatch(reset('postForm'));
+    // dispatch({
+    //   type: RESET_POST_FORM
+    // });
   }
   dispatch({
     type: CLOSE_RESET_POST_FORM_SNACKBAR

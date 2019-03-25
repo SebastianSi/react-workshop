@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { withStyles } from '@material-ui/core/styles';
 
 import { addPostAction, openResetPostFormSnackbar } from '../actions/postsActions';
@@ -57,7 +56,7 @@ const validate = values => {
 };
 export class PostForm extends Component {
   render() {
-    const { classes, addPost, openSnackbar } = this.props;
+    const { classes, title, description, imageIndex, likes, addPost, openSnackbar } = this.props;
 
     return (
       <div className="post-form">
@@ -87,7 +86,12 @@ export class PostForm extends Component {
           variant="contained"
           color="primary"
           onClick={() => {
-            addPost({});
+            addPost({
+              title,
+              description,
+              imageIndex,
+              likes
+            });
           }}>
           Add Post
         </Button>
@@ -98,6 +102,17 @@ export class PostForm extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  const selector = formValueSelector('postForm');
+
+  return {
+    title: selector(state, 'title'),
+    description: selector(state, 'description'),
+    imageIndex: selector(state, 'imageIndex'),
+    likes: selector(state, 'likes')
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   addPost: post => {
@@ -111,7 +126,7 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   withStyles(muiStyles),
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   ),
   reduxForm({
