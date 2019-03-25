@@ -1,7 +1,9 @@
 export const POST_FORM_TOGGLE = 'POST_FORM_TOGGLE';
-// remove the next 2 unnecessary lines
+// remove after connecting the 'description' field to redux-form
 export const POST_FORM_DESCRIPTION = 'POST_FORM_DESCRIPTION';
+// remove after connecting the 'imageIndex' field to redux-form
 export const POST_FORM_IMAGE_INDEX = 'POST_FORM_IMAGE_INDEX';
+// remove after connecting the 'likes' field to redux-form
 export const POST_FORM_LIKES = 'POST_FORM_LIKES';
 export const ADD_POST = 'ADD_POST';
 export const RESET_POST_FORM = 'RESET_POST_FORM';
