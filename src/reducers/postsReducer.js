@@ -5,7 +5,7 @@ import {
   CLOSE_RESET_POST_FORM_SNACKBAR
 } from '../actions/actionConstants';
 
-const initialState = {
+export const initialState = {
   posts: [],
   showPostForm: false,
   openResetPostFormSnackbar: false
