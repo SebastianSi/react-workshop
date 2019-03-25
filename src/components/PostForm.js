@@ -6,28 +6,11 @@ import { compose } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import { withStyles } from '@material-ui/core/styles';
 
-// remove block of imports after connecting the 'likes' field to redux-form
-import ReactDOM from 'react-dom';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-
-import {
-  postFormDescriptionAction, // remove after connecting the 'description' field to redux-form
-  postFormImageIndexAction, // remove after connecting the 'imageIndex' field to redux-form
-  postFormLikesAction, // remove after connecting the 'likes' field to redux-form
-  addPostAction,
-  openResetPostFormSnackbar
-} from '../actions/postsActions';
+import { addPostAction, openResetPostFormSnackbar } from '../actions/postsActions';
 import TextInput from '../inputs/Text';
-// import 'SelectInput'
+import SelectInput from '../inputs/Select';
 
 const muiStyles = theme => ({
-  // remove 'likes' style after connecting the 'likes' field to redux-form
-  likes: {
-    marginTop: 15
-  },
   addButton: {
     height: 40,
     marginTop: 15,
@@ -73,109 +56,38 @@ const validate = values => {
   return errors;
 };
 export class PostForm extends Component {
-  // remove after implementing the 'likes' field
-  state = {
-    labelWidth: 0
-  };
-
-  // remove after implementing the 'likes' field
-  componentDidMount() {
-    this.setState({
-      labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth
-    });
-  }
-
   render() {
-    const {
-      classes,
-      title,
-      description,
-      imageIndex,
-      likes,
-      handleDescriptionChange,
-      handleImageIndexChange,
-      handleLikesChange,
-      addPost,
-      openSnackbar
-    } = this.props;
+    const { classes, addPost, openSnackbar } = this.props;
 
     return (
       <div className="post-form">
+        <Field name="title" label="Title" margin="normal" variant="outlined" component={TextInput} />
         <Field
-          // validate={fieldLevelValidation}
-          name="title" // mandatory
-          label="Title" // needed but not mandatory
-          margin="normal" // material-ui stuff
-          variant="outlined" // material-ui stuff
-          component={TextInput} // mandatory
-        />
-        {/* replace 'TextField' with the 'Field' element and pass forward the required props
-            'value' and 'onChange' can be removed, not needed anymore
-            'name' and 'component' (TextField) are mandatory
-            'multiline', 'rowsMax', 'rows', 'label', 'margin' and 'variant' needed material-ui props
-        */}
-        <TextField
+          name="description"
           multiline
           rowsMax="20"
           rows="7"
           label="Description"
           margin="normal"
           variant="outlined"
-          value={description}
-          onChange={handleDescriptionChange}
+          component={TextInput}
         />
-        {/* replace 'TextField' with the 'Field' element and pass forward the required props
-            'value' and 'onChange' can be removed, not needed anymore
-            'name' and 'component' (TextField) are mandatory
-            'type', 'label', 'margin' and 'variant' are material-ui props
-          */}
-        <TextField
+        <Field
+          name="imageIndex"
           type="number"
           label="Image Index"
           margin="normal"
           variant="outlined"
-          value={imageIndex}
-          onChange={handleImageIndexChange}
+          component={TextInput}
         />
-        {/* replace 'TextField' with the 'Field' element and pass forward the required props
-            'value' and 'onChange' can be removed, not needed anymore
-            'name' and 'component' (SelectInput) are mandatory
-            'label' and 'variant' are material-ui props
-        */}
-        <FormControl variant="outlined" className={classes.likes}>
-          <InputLabel
-            ref={ref => {
-              this.InputLabelRef = ref;
-            }}
-            htmlFor="outlined-likes">
-            Likes
-          </InputLabel>
-          <Select
-            native
-            value={likes}
-            onChange={handleLikesChange}
-            input={<OutlinedInput name="likes" labelWidth={this.state.labelWidth} />}
-            id="outlined-likes">
-            <option value="" />
-            <option value={1}>★☆☆☆☆</option>
-            <option value={2}>★★☆☆☆</option>
-            <option value={3}>★★★☆☆</option>
-            <option value={4}>★★★★☆</option>
-            <option value={5}>★★★★★</option>
-          </Select>
-        </FormControl>
+        <Field name="likes" label="Likes" variant="outlined" component={SelectInput} />
 
         <Button
           className={classes.addButton}
           variant="contained"
           color="primary"
           onClick={() => {
-            addPost({
-              title,
-              description,
-              imageIndex,
-              likes
-            });
+            addPost({});
           }}>
           Add Post
         </Button>
@@ -187,25 +99,7 @@ export class PostForm extends Component {
   }
 }
 
-// remove 'mapStateToProps' after connecting every field to redux-form
-const mapStateToProps = state => ({
-  description: state.postsReducer.descriptionInput,
-  imageIndex: state.postsReducer.imageIndexInput,
-  likes: state.postsReducer.likesInput
-});
 const mapDispatchToProps = dispatch => ({
-  // remove after connecting the 'description' field to redux-form
-  handleDescriptionChange: event => {
-    dispatch(postFormDescriptionAction(event.target.value));
-  },
-  // remove after connecting the 'imageIndex' field to redux-form
-  handleImageIndexChange: event => {
-    dispatch(postFormImageIndexAction(event.target.value));
-  },
-  // remove after connecting the 'likes' field to redux-form
-  handleLikesChange: event => {
-    dispatch(postFormLikesAction(event.target.value));
-  },
   addPost: post => {
     dispatch(addPostAction(post));
   },
@@ -217,7 +111,7 @@ const mapDispatchToProps = dispatch => ({
 export default compose(
   withStyles(muiStyles),
   connect(
-    mapStateToProps, // change to 'null' after connecting every field to redux-form
+    null,
     mapDispatchToProps
   ),
   reduxForm({

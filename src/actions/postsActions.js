@@ -1,8 +1,5 @@
 import {
   POST_FORM_TOGGLE,
-  POST_FORM_DESCRIPTION, // remove after connecting the 'description' field to redux-form
-  POST_FORM_IMAGE_INDEX, // remove after connecting the 'imageIndex' field to redux-form
-  POST_FORM_LIKES, // remove after connecting the 'likes' field to redux-form
   ADD_POST,
   RESET_POST_FORM,
   OPEN_RESET_POST_FORM_SNACKBAR,
@@ -11,24 +8,6 @@ import {
 
 export const togglePostFormAction = () => ({
   type: POST_FORM_TOGGLE
-});
-
-// remove
-export const postFormDescriptionAction = inputVal => ({
-  type: POST_FORM_DESCRIPTION,
-  payload: inputVal
-});
-
-// remove
-export const postFormImageIndexAction = inputVal => ({
-  type: POST_FORM_IMAGE_INDEX,
-  payload: inputVal
-});
-
-// remove
-export const postFormLikesAction = inputVal => ({
-  type: POST_FORM_LIKES,
-  payload: inputVal
 });
 
 export const addPostAction = postObj => ({
