@@ -1,4 +1,4 @@
-let USERS = [
+export let USERS = [
     {id: 0, name: 'Ionel', age: 27, email: 'ionelcelchel@hotmail.com'},
     {id: 1, name:'Anca', age: 26, email: 'anca_abi@gmail.com'}
 ];

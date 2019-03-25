@@ -6,7 +6,6 @@ import { userMock, usersMock } from '../../mocks/usersMock';
 
 describe('users reducer', () => {
   it('should return the initial state', () => {
-    console.log(reducer(undefined, {}))
     expect(reducer(undefined, {})).toEqual(initialState);
   });
 

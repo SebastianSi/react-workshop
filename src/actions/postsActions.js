@@ -10,11 +10,12 @@ export const togglePostFormAction = () => ({
 });
 
 export const addPostAction = postObj => (dispatch, getState) => {
-  dispatch({
+  dispatch(reset('postForm'));
+
+  return dispatch({
     type: ADD_POST,
     payload: postObj
   });
-  dispatch(reset('postForm'));
 };
 
 export const openResetPostFormSnackbar = () => ({
@@ -25,7 +26,9 @@ export const closeResetPostFormSnackbar = resetForm => (dispatch, getState) => {
   if (resetForm) {
     dispatch(reset('postForm'));
   }
-  dispatch({
+
+  return dispatch({
     type: CLOSE_RESET_POST_FORM_SNACKBAR
   });
 };
+
