@@ -188,7 +188,7 @@ export class PostForm extends Component {
   }
 }
 
-// these will not work anymore
+// these will not work anymore, comment 'mapStateToProps' entirely for now
 const mapStateToProps = state => ({
   title: state.postsReducer.titleInput,
   description: state.postsReducer.descriptionInput,
