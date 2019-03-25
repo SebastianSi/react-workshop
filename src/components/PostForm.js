@@ -89,9 +89,9 @@ export class PostForm extends Component {
     const {
       classes,
       title,
-      description, // remove after implementing the 'description' field
-      imageIndex, // remove after implementing the 'imageIndex' field
-      likes, // remove after implementing the 'likes' field
+      description, 
+      imageIndex, 
+      likes, 
       handleDescriptionChange, // remove after implementing the 'description' field
       handleImageIndexChange, // remove after implementing the 'imageIndex' field
       handleLikesChange, // remove after implementing the 'likes' field
@@ -188,8 +188,9 @@ export class PostForm extends Component {
   }
 }
 
-// remove 'mapStateToProps' after connecting every field to redux-form
+// these will not work anymore
 const mapStateToProps = state => ({
+  title: state.postsReducer.titleInput,
   description: state.postsReducer.descriptionInput,
   imageIndex: state.postsReducer.imageIndexInput,
   likes: state.postsReducer.likesInput
