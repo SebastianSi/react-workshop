@@ -32,7 +32,23 @@ const validate = values => {
   } else if (values.title.length > 20) {
     errors.title = 'Max 20 characters allowed';
   } else if (values.title.includes('poop')) {
-    errors.title = 'Invalid title';
+    errors.title = 'Invalid title (poop)';
+  }
+
+  if (!values.description) {
+    errors.description = 'Required field';
+  } else if (values.description.length < 20) {
+    errors.description = 'Min 20 characters allowed';
+  } else if (values.description.length > 500) {
+    errors.description = 'Max 500 characters allowed';
+  } else if (values.description.includes('poop')) {
+    errors.description = 'Invalid title (poop)';
+  }
+
+  if (!values.imageIndex) {
+    errors.imageIndex = 'Required field';
+  } else if (values.imageIndex > 900) {
+    errors.imageIndex = '900 is the maximum image limit';
   }
   // you can add some validation for 'description' and 'imageIndex'
   return errors;
