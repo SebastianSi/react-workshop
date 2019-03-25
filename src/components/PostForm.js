@@ -21,7 +21,7 @@ import {
   openResetPostFormSnackbar
 } from '../actions/postsActions';
 import TextInput from '../inputs/Text';
-// import 'SelectInput' from 'inputs/Text'
+// import 'SelectInput' from '..inputs/Select'
 
 const muiStyles = theme => ({
   // remove 'likes' style after connecting the 'likes' field to redux-form
@@ -137,7 +137,7 @@ export class PostForm extends Component {
           value={imageIndex}
           onChange={handleImageIndexChange}
         />
-        {/* replace 'TextField' with the 'Field' element and pass forward the required props
+        {/* remove 'FormControl' and replace it with 'Field' element and pass forward the required props
             'value' and 'onChange' can be removed, not needed anymore
             'name' and 'component' (SelectInput) are mandatory
             'label' and 'variant' are material-ui props
