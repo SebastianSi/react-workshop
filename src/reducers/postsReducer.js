@@ -69,16 +69,6 @@ const reducer = (state = initialState, action) => {
       };
 
     case CLOSE_RESET_POST_FORM_SNACKBAR:
-      // if (action.payload) {
-      //   return {
-      //     ...state,
-      //     titleInput: '',
-      //     descriptionInput: '',
-      //     imageIndexInput: '',
-      //     likesInput: '',
-      //     openResetPostFormSnackbar: false
-      //   };
-      // }
       return {
         ...state,
         openResetPostFormSnackbar: false
