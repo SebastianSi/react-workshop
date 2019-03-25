@@ -1,4 +1,4 @@
-export const postsMock = [
+export const usersMock = [
   {
     id: 0,
     age: 27,
@@ -22,5 +22,12 @@ export const postsMock = [
     age: 31,
     email: "user@hotmail.com",
     name: "User"
-  },
+  }
 ];
+
+export const userMock = {
+  id: 4,
+  age: 22,
+  email: "newuser@hotmail.com",
+  name: "New User"
+}
