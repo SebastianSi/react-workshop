@@ -25,9 +25,6 @@ export const openResetPostFormSnackbar = () => ({
 export const closeResetPostFormSnackbar = resetForm => (dispatch, getState) => {
   if (resetForm) {
     dispatch(reset('postForm'));
-    // dispatch({
-    //   type: RESET_POST_FORM
-    // });
   }
   dispatch({
     type: CLOSE_RESET_POST_FORM_SNACKBAR
