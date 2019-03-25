@@ -52,6 +52,12 @@ export const addPostAction = postObj => ({
 /////////////////////////////////////////////////////////
 // export const resetPostFormAction = function() {
 //   return function(dispatch, getState) {
+//     // fetch('https://jsonplaceholder.typicode.com/albums')
+//     //   .then(response => response.json())
+//     //   .then(json => {
+//     //     console.log(json);
+//     //     // you can dispatch an action here
+//     //   });
 //     dispatch({
 //       type: RESET_POST_FORM
 //     });
@@ -61,12 +67,6 @@ export const addPostAction = postObj => ({
 // same as
 
 export const resetPostFormAction = () => (dispatch, getState) => {
-  // fetch('https://jsonplaceholder.typicode.com/albums')
-  //   .then(response => response.json())
-  //   .then(json => {
-  //     console.log(json);
-  //     // you can dispatch an action here
-  //   });
   dispatch({
     type: RESET_POST_FORM
   });
