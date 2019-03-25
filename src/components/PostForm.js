@@ -21,7 +21,7 @@ import {
   openResetPostFormSnackbar
 } from '../actions/postsActions';
 import TextInput from '../inputs/Text';
-// import 'SelectInput'
+// import 'SelectInput' from 'inputs/Text'
 
 const muiStyles = theme => ({
   // remove 'likes' style after connecting the 'likes' field to redux-form
@@ -89,12 +89,12 @@ export class PostForm extends Component {
     const {
       classes,
       title,
-      description,
-      imageIndex,
-      likes,
-      handleDescriptionChange,
-      handleImageIndexChange,
-      handleLikesChange,
+      description, // remove after implementing the 'description' field
+      imageIndex, // remove after implementing the 'imageIndex' field
+      likes, // remove after implementing the 'likes' field
+      handleDescriptionChange, // remove after implementing the 'description' field
+      handleImageIndexChange, // remove after implementing the 'imageIndex' field
+      handleLikesChange, // remove after implementing the 'likes' field
       addPost,
       openSnackbar
     } = this.props;
@@ -171,6 +171,7 @@ export class PostForm extends Component {
           color="primary"
           onClick={() => {
             addPost({
+              // remove these lines for now
               title,
               description,
               imageIndex,
