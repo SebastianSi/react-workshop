@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { usersAction } from '../actions/usersActions';
 
-class UsersList extends Component {
+export class UsersList extends Component {
   constructor(props) {
     super(props);
     this.state = {

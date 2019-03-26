@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UsersList snapshot 1`] = `
+<div>
+  <ul
+    className="users-list-container"
+  >
+    <li
+      style={
+        Object {
+          "padding": 10,
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        name: 
+        <b>
+          Ionel
+        </b>
+         
+      </span>
+      <button
+        onClick={[Function]}
+      >
+        Edit
+      </button>
+    </li>
+    <li
+      style={
+        Object {
+          "padding": 10,
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        name: 
+        <b>
+          Andrei
+        </b>
+         
+      </span>
+      <button
+        onClick={[Function]}
+      >
+        Edit
+      </button>
+    </li>
+    <li
+      style={
+        Object {
+          "padding": 10,
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        name: 
+        <b>
+          Test
+        </b>
+         
+      </span>
+      <button
+        onClick={[Function]}
+      >
+        Edit
+      </button>
+    </li>
+    <li
+      style={
+        Object {
+          "padding": 10,
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        name: 
+        <b>
+          User
+        </b>
+         
+      </span>
+      <button
+        onClick={[Function]}
+      >
+        Edit
+      </button>
+    </li>
+  </ul>
+  <div>
+    <button
+      onClick={[Function]}
+    >
+      Add user
+    </button>
+    <a
+      href="/contact"
+      onClick={[Function]}
+    >
+       
+      <button>
+        Contact Page
+      </button>
+       
+    </a>
+    <a
+      href="/posts"
+      onClick={[Function]}
+    >
+       
+      <button>
+        Posts Page
+      </button>
+       
+    </a>
+  </div>
+</div>
+`;

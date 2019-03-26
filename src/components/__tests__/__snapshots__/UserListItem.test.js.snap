@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserListItem snapshot 1`] = `
+<li
+  style={
+    Object {
+      "padding": 10,
+    }
+  }
+>
+  <span
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  >
+    name: 
+    <b>
+      test
+    </b>
+     
+  </span>
+  <button
+    onClick={[Function]}
+  >
+    Edit
+  </button>
+</li>
+`;
