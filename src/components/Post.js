@@ -1,4 +1,5 @@
 import React from 'react';
+import withLogs from './hocs/withLogs'
 
 const Post = ({ title, description, imgIndex, likesNumber }) => (
   <div className="post">
@@ -9,4 +10,4 @@ const Post = ({ title, description, imgIndex, likesNumber }) => (
   </div>
 );
 
-export default Post;
+export default withLogs(Post);
