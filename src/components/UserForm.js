@@ -20,6 +20,8 @@ class UserForm extends Component {
         this.state= {
             user: {}
         }
+
+        this.inputRef = React.createRef();
     }
 
     componentDidMount() {
@@ -33,9 +35,16 @@ class UserForm extends Component {
 
     onSubmit = (type) => {
         switch (type) {
-            case 'save':
-                this.props.onSubmit(this.state.user);
+            case 'save': {
+                if (!this.inputRef.current.props.value.includes('@')) {
+                    console.log(this.inputRef)
+                    alert('Invalid email');
+                } else {
+                    this.props.onSubmit(this.state.user);
+                }
+
                 break;
+            }
             case 'delete':
                 this.props.onDelete(this.props.userId);
                 break;
@@ -103,6 +112,7 @@ class UserForm extends Component {
                         <Divider/>
                         <TextField
                             id="outlined-name"
+                            ref={this.inputRef}
                             label="Email"
                             className={classes.textField}
                             value={user.email || ''}
